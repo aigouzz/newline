@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <style>
+        thead td{ position: relative;}
+        .inp1{ display:none;}
+        .btn-ab{ position: absolute;right:5px;margin:auto;top:0;bottom:0;height:22px;}
+    </style>
+    <script>
+        $(document).ready(function () {
+            var all=$('td').eq(0).nextAll();
+            var btn=$('.btn-primary');
+           btn.hide();
+           all.children('.btn-group').hide();
+           all.bind('contextmenu',function(){
+               return false;
+           });
+           all.bind('mouseover',function(){
+               $(this).find('.btn-group').show();
+           });
+           all.bind('mouseout',function(){
+               $(this).find('.btn-group').hide();
+                    });
+           all.bind('click',function(){
+               $(this).find('.dropdown-menu').slideToggle(100);
+           });
+           $('.dropdown-menu').each(function(){
+               $(this).find('li:eq(0)').bind('click',function(){
+                   var inp=$(this).parents('td').children('input');
+                   var text=$(this).parents('td').children('.td-text');
+                   var btn1=$(this).parents('td').children('.btn-primary');
+                   var td=$(this).parents('td');
+                   text.hide();
+                   inp.show();
+                   btn1.show();
+                   inp.attr('value',text.text());
+                   td.unbind('click');
+                   td.unbind('mouseover');
+                   td.unbind('mouseout');
+                   td.find('.btn-group').hide();
+               });
+           });
+           btn.bind('click',function(){
+               var inp=$(this).parents('td').children('input');
+               var text=$(this).parents('td').children('.td-text');
+               var btn1=$(this).parents('td').children('.btn-primary');
+               var td=$(this).parents('td');
+               text.show();
+               inp.hide();
+               btn1.hide();
+               if($(this).prev('input').val()==''){
+                   text.text(text.text());
+               }else{
+                   text.text(inp.val());
+               }
+               td.bind('click',function(){
+                   $(this).find('.dropdown-menu').slideToggle(100);
+               });
+               td.bind('mouseover',function(){
+                   $(this).children('.btn-group').show();
+               });
+               td.bind('mouseout',function(){
+                   $(this).children('.btn-group').hide();
+               });
+           });
+           $('.dropdown-menu').each(function() {
+               $(this).find('li:eq(1)').bind('click', function () {
+                   var td=$(this).parents('td');
+                   td.hide();
+               });
+           });
+        });
+    </script>
+</head>
+<body>
+<div class="col-sm-offset-2">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <td>
+                <input type="checkbox" class=""/>
+            </td>
+            <td>
+                <span class="td-text">行号</span>
+                <input type="text" class="inp1" value=""/>
+                <button class="btn btn-primary btn-xs">确定</button>
+                <div class="btn-group btn-ab">
+                    <button data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-xs">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:;">更改标题</a></li>
+                        <li><a href="javascript:;">隐藏</a></li>
+                    </ul>
+                </div>
+            </td>
+            <td>
+                <span class="td-text">系统名称</span>
+                <input type="text" class="inp1" value=""/>
+                <button class="btn btn-primary btn-xs">确定</button>
+                <div class="btn-ab btn-group">
+                    <button data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-xs">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:;">更改标题</a></li>
+                        <li><a href="javascript:;">隐藏</a></li>
+                    </ul>
+                </div>
+            </td>
+            <td>
+                <span class="td-text">部署模式</span>
+                <input type="text" class="inp1" value=""/>
+                <button class="btn btn-primary btn-xs">确定</button>
+                <div class="btn-ab btn-group">
+                    <button data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-xs">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:;">更改标题</a></li>
+                        <li><a href="javascript:;">隐藏</a></li>
+                    </ul>
+                </div>
+            </td>
+            <td>
+                <span class="td-text">部署单元类型</span>
+                <input type="text" class="inp1" value=""/>
+                <button class="btn btn-primary btn-xs">确定</button>
+                <div class="btn-ab btn-group">
+                    <button data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-xs">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:;">更改标题</a></li>
+                        <li><a href="javascript:;">隐藏</a></li>
+                    </ul>
+                </div>
+            </td>
+            <td>
+                <span class="td-text">应用子系统</span>
+                <input type="text" class="inp1" value=""/>
+                <button class="btn btn-primary btn-xs">确定</button>
+                <div class="btn-ab btn-group">
+                    <button data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-xs">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:;">更改标题</a></li>
+                        <li><a href="javascript:;">隐藏</a></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        </thead>
+    </table>
+</div>
+</body>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</html>
